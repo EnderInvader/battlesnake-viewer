@@ -179,40 +179,16 @@ export class SVGChessboard {
     for (let r = 0; r < 8; r++) {
       for (let c = 0; c < 8; c++) {
         const piece = this.chessboard.get(c, r);
-        if (piece === "K") {
+        if (piece === "H") {
           g.appendChild(this.drawPiece([c, r], WHITE_KING));
         }
-        if (piece === "Q") {
-          g.appendChild(this.drawPiece([c, r], WHITE_QUEEN));
-        }
-        if (piece === "N") {
-          g.appendChild(this.drawPiece([c, r], WHITE_KNIGHT));
-        }
-        if (piece === "R") {
-          g.appendChild(this.drawPiece([c, r], WHITE_ROOK));
-        }
         if (piece === "B") {
-          g.appendChild(this.drawPiece([c, r], WHITE_BISHOP));
-        }
-        if (piece === "P") {
           g.appendChild(this.drawPiece([c, r], WHITE_PAWN));
         }
-        if (piece === "k") {
+        if (piece === "h") {
           g.appendChild(this.drawPiece([c, r], BLACK_KING));
         }
-        if (piece === "q") {
-          g.appendChild(this.drawPiece([c, r], BLACK_QUEEN));
-        }
-        if (piece === "n") {
-          g.appendChild(this.drawPiece([c, r], BLACK_KNIGHT));
-        }
-        if (piece === "r") {
-          g.appendChild(this.drawPiece([c, r], BLACK_ROOK));
-        }
         if (piece === "b") {
-          g.appendChild(this.drawPiece([c, r], BLACK_BISHOP));
-        }
-        if (piece === "p") {
           g.appendChild(this.drawPiece([c, r], BLACK_PAWN));
         }
       }

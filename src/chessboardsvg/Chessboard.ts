@@ -1,18 +1,12 @@
 const example = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
 export type ChessPiece =
-  | "r"
-  | "n"
-  | "b"
-  | "q"
-  | "k"
-  | "p"
-  | "R"
-  | "N"
+  | "H"
   | "B"
-  | "Q"
-  | "K"
-  | "P"
+  | "h"
+  | "b"
+  | "f"
+  | "z"
   | "_";
 
 /**
@@ -74,29 +68,24 @@ export class Chessboard {
   }
 
   print() {
-    let chessString = "";
+    let boardString = "";
     this.chessboard.forEach((p, i) => {
       if (p === "_") {
-        chessString += ".";
+        boardString += ".";
       } else {
-        chessString += p;
+        boardString += p;
       }
       if ((i + 1) % this.BOARD_SIZE === 0) {
-        chessString += "\n";
+        boardString += "\n";
       }
     });
-    console.log(chessString);
+    console.log(boardString);
   }
 
   static fromFEN(fenString: string): Chessboard {
     try {
       let [
         board,
-        activePlayer,
-        castling,
-        enPassant,
-        halfMoveClock,
-        fullMoveClock,
       ] = fenString.split(" ");
 
       const chessboard = new Chessboard();
