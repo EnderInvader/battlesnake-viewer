@@ -37,14 +37,14 @@ export default class ObsidianChess extends Plugin {
     };
     this.addSettingTab(new ObsidianChessSettingsTab(this.app, this));
     this.registerMarkdownCodeBlockProcessor(
-      "chessboard",
+      "battlesnake",
       this.draw_chessboard()
     );
   }
 
   refreshMarkdownCodeBlockProcessor() {
     this.registerMarkdownCodeBlockProcessor(
-      "chessboard",
+      "battlesnake",
       this.draw_chessboard()
     );
   }
@@ -150,7 +150,7 @@ class ObsidianChessSettingsTab extends PluginSettingTab {
 
     containerEl.empty();
 
-    containerEl.createEl("h2", { text: "Obsidian Chessboard Settings" });
+    containerEl.createEl("h2", { text: "Obsidian BattleSnake Settings" });
 
     new Setting(containerEl)
       .setName("White Square Color")
