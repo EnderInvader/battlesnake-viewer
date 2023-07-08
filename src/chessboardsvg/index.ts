@@ -13,6 +13,7 @@ import {
   BLACK_ROOK,
   BLACK_BISHOP,
   BLACK_PAWN,
+  FOOD
 } from "./Pieces";
 
 export interface SVGChessboardOptions {
@@ -194,7 +195,7 @@ export class SVGChessboard {
         }
 
         if (piece === "f") {
-          g.appendChild(this.drawPiece([c, r], WHITE_QUEEN));
+          g.appendChild(this.drawPiece([c, r], FOOD));
         }
         if (piece === "z") {
           g.appendChild(this.drawPiece([c, r], BLACK_ROOK));
@@ -208,7 +209,7 @@ export class SVGChessboard {
     let [x, y] = this.getBoardSVGCord(coord);
     //const DELTA = 0 * this.scale;
     let g = document.createElementNS(this.xmlns, "g");
-    g.setAttributeNS(null, "transform", `translate(${x},${y}) scale(${0.85})`);
+    g.setAttributeNS(null, "transform", `translate(${x},${y}) scale(${1})`); // scale 0.85
     g.innerHTML = piece;
     return g;
   }

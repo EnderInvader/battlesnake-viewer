@@ -36,10 +36,7 @@ export default class ObsidianChess extends Plugin {
       blackSquareColor: "#b58862",
     };
     this.addSettingTab(new ObsidianChessSettingsTab(this.app, this));
-    this.registerMarkdownCodeBlockProcessor(
-      "battlesnake",
-      this.draw_chessboard()
-    );
+    this.refreshMarkdownCodeBlockProcessor();
   }
 
   refreshMarkdownCodeBlockProcessor() {
