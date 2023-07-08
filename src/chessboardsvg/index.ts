@@ -185,11 +185,19 @@ export class SVGChessboard {
         if (piece === "B") {
           g.appendChild(this.drawPiece([c, r], WHITE_PAWN));
         }
+        
         if (piece === "h") {
           g.appendChild(this.drawPiece([c, r], BLACK_KING));
         }
         if (piece === "b") {
           g.appendChild(this.drawPiece([c, r], BLACK_PAWN));
+        }
+
+        if (piece === "f") {
+          g.appendChild(this.drawPiece([c, r], WHITE_QUEEN));
+        }
+        if (piece === "z") {
+          g.appendChild(this.drawPiece([c, r], BLACK_ROOK));
         }
       }
     }
