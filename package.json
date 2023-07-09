@@ -1,7 +1,7 @@
 {
   "name": "battlesnake-viewer",
   "author": "EnderInvader <enderinvader.end@gmail.com>",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Render BattleSnake positions diagrams in note preview.",
   "main": "main.js",
   "scripts": {
