@@ -15,8 +15,7 @@ export default class BattleSnakeViewer extends Plugin {
 
   async onload() {
     this.setting = (await this.loadData()) || {
-      whiteSquareColor: "#f0d9b5",
-      blackSquareColor: "#b58862",
+      squareColor: "#a1a1a1",
     };
     this.addSettingTab(new BattleSnakeViewerSettingsTab(this.app, this));
     this.refreshMarkdownCodeBlockProcessor();
@@ -62,8 +61,7 @@ export default class BattleSnakeViewer extends Plugin {
  * as you wish by adding fields and all the data you need.
  */
 interface BattleSnakeViewerSettings extends SVGBoardOptions {
-  whiteSquareColor: string;
-  blackSquareColor: string;
+  
 }
 
 class BattleSnakeViewerSettingsTab extends PluginSettingTab {
@@ -83,22 +81,11 @@ class BattleSnakeViewerSettingsTab extends PluginSettingTab {
     containerEl.createEl("h2", { text: "BattleSnake Viewer Settings" });
 
     new Setting(containerEl)
-      .setName("White Square Color")
-      .setDesc('Set the color of the "white" squares.')
+      .setName("Square Color")
+      .setDesc('Set the color of the grid squares.')
       .addText((text) =>
-        text.setValue(String(settings.whiteSquareColor)).onChange((value) => {
-          settings.whiteSquareColor = value;
-          this.plugin.refreshMarkdownCodeBlockProcessor();
-          this.plugin.saveData(settings);
-        })
-      );
-
-    new Setting(containerEl)
-      .setName("Black Square Color")
-      .setDesc('Set the color of the "black" squares.')
-      .addText((text) =>
-        text.setValue(String(settings.blackSquareColor)).onChange((value) => {
-          settings.blackSquareColor = value;
+        text.setValue(String(settings.squareColor)).onChange((value) => {
+          settings.squareColor = value;
           this.plugin.refreshMarkdownCodeBlockProcessor();
           this.plugin.saveData(settings);
         })
