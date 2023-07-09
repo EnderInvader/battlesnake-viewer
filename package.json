@@ -1,8 +1,8 @@
 {
-  "name": "obsidian-battlesnake",
+  "name": "battlesnake-viewer",
   "author": "EnderInvader <enderinvader.end@gmail.com>",
   "version": "0.1.0",
-  "description": "Rendering engine for BattleSnake boards in Obsidian",
+  "description": "Render BattleSnake positions diagrams in note preview.",
   "main": "main.js",
   "scripts": {
     "dev": "rollup --config rollup.config.js -w",

@@ -1,5 +1,5 @@
 {
-  "id": "obsidian-battlesnake",
+  "id": "battlesnake-viewer",
   "version": "0.1.0",
   "name": "BattleSnake Board Viewer",
   "description": "Render BattleSnake positions diagrams in note preview.",
