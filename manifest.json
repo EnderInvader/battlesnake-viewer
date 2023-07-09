@@ -1,6 +1,6 @@
 {
   "id": "battlesnake-viewer",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "name": "BattleSnake Board Viewer",
   "description": "Render BattleSnake positions diagrams in note preview.",
   "author": "EnderInvader",
