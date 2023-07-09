@@ -1,53 +1,22 @@
 # Obsidian Chess Plugin
 
-This plugin adds the capability to visualize Chess [FEN](https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation) positions on a SVG chessboard directly in preview mode.
+This plugin adds the capability to visualize BattleSnake JSON board positions on a SVG board directly in preview mode.
 
-By design, this plugin is for visualization only. Do not expect interactivity or the possibility to handle entire games in PGN format. This plugin want to render just a SVG image and it is optimized for visualization and HTML/PDF exports.
-
-If you want a more interactive plugin, I recommend [Chesser](https://github.com/SilentVoid13/Chesser).
+By design, this plugin is for visualization only. Do not expect interactivity or the possibility to handle entire games. This plugin want to render just a SVG image and it is optimized for visualization and HTML/PDF exports.
 
 ## How to use it
 
-After you installed the plugin, just write the FEN position representation inside a code block with the `chessboard` language.
+After you installed the plugin, just copy the JSON board inside a code block with the `battlesnake` language.
 
 ### Example
 
 ````
-```chessboard
-fen: r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R
+```battlesnake
+{"game":{"id":"board-generator-362093","ruleset":{"name":"standard","version":"board-generator","settings":{"foodSpawnChance":20,"minimumFood":1,"hazardDamagePerTurn":14,"hazardMap":"","hazardMapAuthor":"","royale":{"shrinkEveryNTurns":25},"squad":{"allowBodyCollisions":false,"sharedElimination":false,"sharedHealth":false,"sharedLength":false}}},"map":"","timeout":500,"source":""},"turn":123,"board":{"height":8,"width":8,"snakes":[{"id":"you","name":"#3AE41B","latency":"0","health":100,"body":[{"x":1,"y":5},{"x":1,"y":6},{"x":2,"y":6}],"head":{"x":1,"y":5},"length":3,"shout":"","squad":"","customizations":{"color":"#3AE41B","head":"default","tail":"default"}},{"id":"Snake1","name":"#E4601B","latency":"0","health":100,"body":[{"x":5,"y":3},{"x":5,"y":4},{"x":5,"y":5}],"head":{"x":5,"y":3},"length":3,"shout":"","squad":"","customizations":{"color":"#E4601B","head":"default","tail":"default"}},{"id":"Snake2","name":"#C51BE4","latency":"0","health":100,"body":[{"x":4,"y":2},{"x":4,"y":1},{"x":3,"y":1}],"head":{"x":4,"y":2},"length":3,"shout":"","squad":"","customizations":{"color":"#C51BE4","head":"default","tail":"default"}},{"id":"Snake3","name":"#1B9FE4","latency":"0","health":100,"body":[{"x":4,"y":6},{"x":5,"y":6}],"head":{"x":4,"y":6},"length":2,"shout":"","squad":"","customizations":{"color":"#1B9FE4","head":"default","tail":"default"}}],"food":[{"x":3,"y":4}],"hazards":[]},"you":{"id":"you","name":"#3AE41B","latency":"0","health":100,"body":[{"x":1,"y":5},{"x":1,"y":6},{"x":2,"y":6}],"head":{"x":1,"y":5},"length":3,"shout":"","squad":"","customizations":{"color":"#3AE41B","head":"default","tail":"default"}}}
 ```
 ````
 
 ![Example](example.png)
-
-### Change Board Orientation
-
-Use the `orientation` command. It can be `white` (default) or `black`.
-
-````
-```chessboard
-fen: r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R
-orientation: black
-```
-````
-
-## Annotations (Beta)
-
-You can annotate your schema with arrows and highlights.
-
-````
-```chessboard
-fen: r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R
-annotations: Af8-b4 Hf8
-```
-````
-
-![Example Annotations](example2.png)
-
-### Syntax
-
-- `A<square>-<square>`, draws an arrow from the first square to the second square. E.g., `Af8-b4`.
-- `H<square>`, highlight a specific square. E.g., `Hf8`.
 
 ## How to compile the plugin
 
@@ -67,9 +36,4 @@ This will create a `main.js` file in the project root. That is the entry point o
 
 ## Planned Features
 
-- [ ] Chessboard color customization.
-- [x] Chessboard annotation and highlights.
-
-## Chess Pieces
-
-The SVG pieces were made by jurgenwesterhof (adapted from work of Cburnett), CC BY-SA 3.0 <https://creativecommons.org/licenses/by-sa/3.0>, via [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Chess_Pieces_Sprite.svg).
+Nothing currently.
