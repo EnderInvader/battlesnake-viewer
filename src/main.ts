@@ -38,8 +38,8 @@ export default class BattleSnakeViewer extends Plugin {
       const board = SVGBoard.fromJSON(parsedCode, this.setting);
 
       const xmlns = "http://www.w3.org/2000/svg";
-      const boxWidth = 320;
-      const boxHeight = 320;
+      const boxWidth = board.squareSize * board.json.board.width;
+      const boxHeight = board.squareSize * board.json.board.height;
       const block = document.createElementNS(xmlns, "svg");
       block.setAttributeNS(null, "viewBox", `0 0 ${boxWidth} ${boxHeight}`);
       block.setAttributeNS(null, "width", String(boxWidth));
@@ -50,7 +50,7 @@ export default class BattleSnakeViewer extends Plugin {
     };
   }
 
-  private static parseCode(input: string): JSON {
+  private static parseCode(input: string): any {
     let json = JSON.parse(input);
     return json;
   }

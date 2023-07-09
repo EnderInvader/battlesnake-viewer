@@ -11,8 +11,8 @@ export interface SVGBoardOptions {
 }
 
 export class SVGBoard {
-  private json: any;
-  private squareSize: number;
+  public json: any;
+  public squareSize: number;
 
   private options: SVGBoardOptions;
 
@@ -73,8 +73,8 @@ export class SVGBoard {
 
   private drawBoard(): SVGElement {
     let g = document.createElementNS(this.xmlns, "g");
-    for (let r = 0; r < 8; r++) {
-      for (let c = 0; c < 8; c++) {
+    for (let r = 0; r < this.json.board.height; r++) {
+      for (let c = 0; c < this.json.board.width; c++) {
         g.appendChild(this.drawSquare([c, r]));
       }
     }
@@ -88,23 +88,23 @@ export class SVGBoard {
     for (const snake of this.json.board.snakes) {
       if (snake.id === this.json.you.id) continue;
       for (const body of snake.body) {
-        g.appendChild(this.drawSnakeBody([body.x, this.json.board.width - 1 - body.y], this.snakeColors[num]));
+        g.appendChild(this.drawSnakeBody([body.x, this.json.board.height - 1 - body.y], this.snakeColors[num]));
       }
-      g.appendChild(this.drawSnakeHead([snake.head.x, this.json.board.width - 1 - snake.head.y]));
+      g.appendChild(this.drawSnakeHead([snake.head.x, this.json.board.height - 1 - snake.head.y]));
       num++;
     }
 
     for (const body of this.json.you.body) {
-      g.appendChild(this.drawSnakeBody([body.x, this.json.board.width - 1 - body.y], this.snakeColors[0]));
+      g.appendChild(this.drawSnakeBody([body.x, this.json.board.height - 1 - body.y], this.snakeColors[0]));
     }
-    g.appendChild(this.drawSnakeHead([this.json.you.head.x, this.json.board.width - 1 - this.json.you.head.y]));
+    g.appendChild(this.drawSnakeHead([this.json.you.head.x, this.json.board.height - 1 - this.json.you.head.y]));
 
     for (const food of this.json.board.food) {
-      g.appendChild(this.drawFood([food.x, this.json.board.width - 1 - food.y]));
+      g.appendChild(this.drawFood([food.x, this.json.board.height - 1 - food.y]));
     }
     
     for (const hazard of this.json.board.hazards) {
-      g.appendChild(this.drawHazard([hazard.x, this.json.board.width - 1 - hazard.y]));
+      g.appendChild(this.drawHazard([hazard.x, this.json.board.height - 1 - hazard.y]));
     }
     
     return g;
@@ -178,12 +178,12 @@ export class SVGBoard {
 
   drawCoordinateSystem(): SVGElement {
     let g = document.createElementNS(this.xmlns, "g");
-    for (let r = 0; r < 8; r++) {
-      for (let c = 0; c < 8; c++) {
+    for (let r = 0; r < this.json.board.height; r++) {
+      for (let c = 0; c < this.json.board.width; c++) {
         if (c === 0) {
-          g.appendChild(this.drawText([c, r], String(8 - r), "row"));
+          g.appendChild(this.drawText([c, r], String(this.json.board.height - r), "row"));
         }
-        if (r === 7) {
+        if (r === this.json.board.height - 1) {
           g.appendChild(
             this.drawText([c, r], String(this.numToLetter(c)), "column")
           );
