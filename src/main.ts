@@ -5,11 +5,11 @@ import {
   PluginSettingTab,
   Setting,
 } from "obsidian";
-import { SVGChessboard, SVGChessboardOptions } from "./chessboardsvg/index";
+import { SVGBoard, SVGBoardOptions } from "./battlesnakesvg/index";
 
-export default class ObsidianChess extends Plugin {
+export default class BattleSnakeViewer extends Plugin {
   // This field stores your plugin settings.
-  setting: ObsidianChessSettings;
+  setting: BattleSnakeViewerSettings;
 
   onInit() {}
 
@@ -18,25 +18,25 @@ export default class ObsidianChess extends Plugin {
       whiteSquareColor: "#f0d9b5",
       blackSquareColor: "#b58862",
     };
-    this.addSettingTab(new ObsidianChessSettingsTab(this.app, this));
+    this.addSettingTab(new BattleSnakeViewerSettingsTab(this.app, this));
     this.refreshMarkdownCodeBlockProcessor();
   }
 
   refreshMarkdownCodeBlockProcessor() {
     this.registerMarkdownCodeBlockProcessor(
       "battlesnake",
-      this.draw_chessboard()
+      this.draw_board()
     );
   }
 
-  private draw_chessboard() {
+  private draw_board() {
     return (
       source: string,
       el: HTMLElement,
       ctx: MarkdownPostProcessorContext
     ) => {
-      const parsedCode = ObsidianChess.parseCode(source);
-      const chessboard = SVGChessboard.fromJSON(parsedCode, this.setting);
+      const parsedCode = BattleSnakeViewer.parseCode(source);
+      const board = SVGBoard.fromJSON(parsedCode, this.setting);
 
       const xmlns = "http://www.w3.org/2000/svg";
       const boxWidth = 320;
@@ -45,7 +45,7 @@ export default class ObsidianChess extends Plugin {
       block.setAttributeNS(null, "viewBox", `0 0 ${boxWidth} ${boxHeight}`);
       block.setAttributeNS(null, "width", String(boxWidth));
       block.setAttributeNS(null, "height", String(boxHeight));
-      block.appendChild(chessboard.draw());
+      block.appendChild(board.draw());
       block.style.display = "block";
       el.appendChild(block);
     };
@@ -61,15 +61,15 @@ export default class ObsidianChess extends Plugin {
  * This is a data class that contains your plugin configurations. You can edit it
  * as you wish by adding fields and all the data you need.
  */
-interface ObsidianChessSettings extends SVGChessboardOptions {
+interface BattleSnakeViewerSettings extends SVGBoardOptions {
   whiteSquareColor: string;
   blackSquareColor: string;
 }
 
-class ObsidianChessSettingsTab extends PluginSettingTab {
-  plugin: ObsidianChess;
+class BattleSnakeViewerSettingsTab extends PluginSettingTab {
+  plugin: BattleSnakeViewer;
 
-  constructor(app: App, plugin: ObsidianChess) {
+  constructor(app: App, plugin: BattleSnakeViewer) {
     super(app, plugin);
     this.plugin = plugin;
   }
@@ -80,7 +80,7 @@ class ObsidianChessSettingsTab extends PluginSettingTab {
 
     containerEl.empty();
 
-    containerEl.createEl("h2", { text: "Obsidian BattleSnake Settings" });
+    containerEl.createEl("h2", { text: "BattleSnake Viewer Settings" });
 
     new Setting(containerEl)
       .setName("White Square Color")

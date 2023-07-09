@@ -1,6 +1,6 @@
 export type BoardCoordinate = [number, number];
 
-export interface SVGChessboardOptions {
+export interface SVGBoardOptions {
   drawCoordinates: boolean;
   squareColor: string;
   foodColor: string;
@@ -10,11 +10,11 @@ export interface SVGChessboardOptions {
   snakeHeadColor: string;
 }
 
-export class SVGChessboard {
+export class SVGBoard {
   private json: any;
   private squareSize: number;
 
-  private options: SVGChessboardOptions;
+  private options: SVGBoardOptions;
 
   private readonly xmlns = "http://www.w3.org/2000/svg";
   private readonly defaultSquareSize = 40;
@@ -36,7 +36,7 @@ export class SVGChessboard {
       hazardOpacity = "0.35",
       snakeColors = ["green", "#E4601B", "#C51BE4", "#1B9FE4"],
       snakeHeadColor = "#5c5c5c",
-    }: Partial<SVGChessboardOptions> = {}
+    }: Partial<SVGBoardOptions> = {}
   ) {
     this.json = json;
     this.squareSize = this.defaultSquareSize;
@@ -228,8 +228,8 @@ export class SVGChessboard {
 
   static fromJSON(
     json: any,
-    options: Partial<SVGChessboardOptions> = {}
+    options: Partial<SVGBoardOptions> = {}
   ) {
-    return new SVGChessboard(json, options);
+    return new SVGBoard(json, options);
   }
 }
