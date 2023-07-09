@@ -7,23 +7,6 @@ import {
 } from "obsidian";
 import { SVGChessboard, SVGChessboardOptions } from "./chessboardsvg/index";
 
-interface ParsedChessCode {
-  fen: string;
-  annotations: Array<Highlight | ArrowAnnotation>;
-  orientation: "white" | "black";
-}
-
-interface Highlight {
-  type: "highlight";
-  square: string;
-}
-
-interface ArrowAnnotation {
-  type: "arrow";
-  start: string;
-  end: string;
-}
-
 export default class ObsidianChess extends Plugin {
   // This field stores your plugin settings.
   setting: ObsidianChessSettings;
@@ -53,16 +36,7 @@ export default class ObsidianChess extends Plugin {
       ctx: MarkdownPostProcessorContext
     ) => {
       const parsedCode = ObsidianChess.parseCode(source);
-      this.setting.orientation = parsedCode.orientation;
-      const chessboard = SVGChessboard.fromFEN(parsedCode.fen, this.setting);
-      for (let annotation of parsedCode.annotations) {
-        if (annotation.type === "arrow") {
-          chessboard.addArrow(annotation.start, annotation.end);
-        }
-        if (annotation.type === "highlight") {
-          chessboard.highlight(annotation.square);
-        }
-      }
+      const chessboard = SVGChessboard.fromJSON(parsedCode, this.setting);
 
       const xmlns = "http://www.w3.org/2000/svg";
       const boxWidth = 320;
@@ -77,50 +51,9 @@ export default class ObsidianChess extends Plugin {
     };
   }
 
-  private static parseCode(input: string): ParsedChessCode {
-    const lines = input.split(/\r?\n/);
-    let fen = lines[0];
-    if (fen.startsWith("fen: ")) {
-      fen = fen.replace("fen: ", "");
-    }
-    const annotations: Array<Highlight | ArrowAnnotation> = [];
-    let orientation: "white" | "black" = "white";
-    for (let line of lines.splice(1)) {
-      if (line.trim() === "") {
-        continue;
-      }
-      if (line.startsWith("orientation: ")) {
-        line = line.replace("orientation: ", "");
-        line = line.trim();
-        if (line !== "white" && line !== "black") {
-          throw Error(`Unknown orientation ${orientation}`);
-        }
-        orientation = line;
-      }
-      if (line.startsWith("annotations: ")) {
-        line = line.replace("annotations: ", "");
-        let partial_annotations = line.split(" ");
-        for (let annotation of partial_annotations) {
-          if (annotation.startsWith("H")) {
-            annotations.push({
-              type: "highlight",
-              square: annotation.substring(1),
-            });
-            continue;
-          }
-          if (annotation.startsWith("A")) {
-            let [start, end] = annotation.substring(1).split("-");
-            annotations.push({
-              type: "arrow",
-              start,
-              end,
-            });
-            continue;
-          }
-        }
-      }
-    }
-    return { fen, annotations, orientation };
+  private static parseCode(input: string): JSON {
+    let json = JSON.parse(input);
+    return json;
   }
 }
 
