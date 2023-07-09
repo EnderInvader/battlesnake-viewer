@@ -1,4 +1,4 @@
-# Obsidian Chess Plugin
+# Obsidian BattleSnake Plugin
 
 This plugin adds the capability to visualize BattleSnake JSON board positions on a SVG board directly in preview mode.
 
@@ -37,3 +37,7 @@ This will create a `main.js` file in the project root. That is the entry point o
 ## Planned Features
 
 Nothing currently.
+
+## Attribution
+
+Original code framework from [Obsidian Chess Plugin](https://github.com/THeK3nger/obsidian-chessboard)
