@@ -78,10 +78,10 @@ class BattleSnakeViewerSettingsTab extends PluginSettingTab {
 
     containerEl.empty();
 
-    containerEl.createEl("h2", { text: "BattleSnake Viewer Settings" });
+    //containerEl.createEl("h2", { text: "BattleSnake Viewer Settings" });
 
     new Setting(containerEl)
-      .setName("Square Color")
+      .setName("Square color")
       .setDesc('Set the color of the grid squares.')
       .addText((text) =>
         text.setValue(String(settings.squareColor)).onChange((value) => {

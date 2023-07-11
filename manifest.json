@@ -4,7 +4,7 @@
   "name": "BattleSnake Board Viewer",
   "description": "Render BattleSnake positions diagrams in note preview.",
   "author": "EnderInvader",
-  "authorUrl": "",
+  "authorUrl": "https://github.com/EnderInvader",
   "minAppVersion": "0.11.0",
   "isDesktopOnly": false
 }
